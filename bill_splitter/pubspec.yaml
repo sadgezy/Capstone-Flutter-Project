@@ -1,0 +1,35 @@
+name: bill_splitter
+description: A new Flutter project.
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.1.4 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.1
+  get_storage: ^2.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway/static/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway/static/Raleway-Bold.ttf
+        - asset: assets/fonts/Raleway/static/Raleway-Italic.ttf
+        - asset: assets/fonts/Raleway/static/Raleway-BoldItalic.ttf
+        - asset: assets/fonts/Raleway/static/Raleway-Black.ttf
+        - asset: assets/fonts/Raleway/static/Raleway-BlackItalic.ttf
+        - asset: assets/fonts/Raleway/static/Raleway-ExtraBold.ttf
+        - asset: assets/fonts/Raleway/static/Raleway-Light.ttf
+  assets:
+    - assets/
+    - assets/fonts/
