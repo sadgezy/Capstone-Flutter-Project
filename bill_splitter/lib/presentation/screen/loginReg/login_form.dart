@@ -131,25 +131,28 @@ class _LoginFormState extends State<LoginForm> {
                     ],
                   ),
                   SizedBox(
-                    height: 150,
+                    height: screenHeight * 0.17,
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Container(
-                      height: 65,
-                      width: screenWidth * 0.3,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(34, 34, 34, 0.7),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          // Validate and submit form
-                        },
-                        child: Image.asset(
-                          'assets/arrow.png',
-                          height: 65,
-                          color: const Color.fromARGB(255, 255, 255, 255),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 65,
+                        width: screenWidth * 0.3,
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(34, 34, 34, 0.7),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            // Validate and submit form
+                          },
+                          child: Image.asset(
+                            'assets/arrow.png',
+                            height: 65,
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                          ),
                         ),
                       ),
                     ),

@@ -157,34 +157,32 @@ class _SignupFormState extends State<SignupForm> {
                   ),
                 ),
                 SizedBox(
-                  height: 70,
+                  height: screenHeight * 0.08,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        height: 65,
-                        width: screenWidth * 0.3,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(34, 34, 34, 0.7),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: TextButton(
-                          onPressed: () {
-                            // Validate and submit form
-                          },
-                          child: Image.asset(
-                            'assets/arrow.png',
-                            height: 65,
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                          ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 65,
+                      width: screenWidth * 0.3,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(34, 34, 34, 0.7),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          // Validate and submit form
+                        },
+                        child: Image.asset(
+                          'assets/arrow.png',
+                          height: 65,
+                          color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ),
