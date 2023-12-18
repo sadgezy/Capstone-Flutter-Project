@@ -1,7 +1,7 @@
 import 'package:bill_splitter/colors.dart';
-import 'package:bill_splitter/presentation/screen/loginReg/form_mode_pill.dart';
-import 'package:bill_splitter/presentation/screen/loginReg/login_form.dart';
-import 'package:bill_splitter/presentation/screen/loginReg/signup_form.dart';
+import 'package:bill_splitter/presentation/screen/login_signup/form_mode_pill.dart';
+import 'package:bill_splitter/presentation/screen/login_signup/login_form.dart';
+import 'package:bill_splitter/presentation/screen/login_signup/signup_form.dart';
 import 'package:flutter/material.dart';
 
 class LoginReg extends StatefulWidget {
@@ -40,14 +40,15 @@ class _LoginRegState extends State<LoginReg>
                       child: Center(
                           child: Image.asset(
                         'assets/logo.png',
+                        height: 100,
                       ))),
                 ),
-                const Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Center(child: Text('Split Up'))),
-                ),
+                // const Align(
+                //   alignment: Alignment.center,
+                //   child: Padding(
+                //       padding: const EdgeInsets.all(16.0),
+                //       child: Center(child: Text('Split Up'))),
+                // ),
               ],
             ),
           ),

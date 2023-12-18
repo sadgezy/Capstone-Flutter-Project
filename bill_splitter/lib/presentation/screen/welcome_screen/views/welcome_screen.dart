@@ -1,4 +1,3 @@
-import 'package:bill_splitter/apps/routes/app_routes.dart';
 import 'package:bill_splitter/presentation/screen/welcome_screen/views/landings/landings1.dart';
 import 'package:bill_splitter/presentation/screen/welcome_screen/views/landings/landings2.dart';
 import 'package:bill_splitter/presentation/screen/welcome_screen/views/landings/landings3.dart';

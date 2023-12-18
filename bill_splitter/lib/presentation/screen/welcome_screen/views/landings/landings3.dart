@@ -6,7 +6,7 @@ class LandingPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
       color: Color.fromRGBO(255, 255, 255, 1),

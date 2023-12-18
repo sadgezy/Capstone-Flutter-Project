@@ -12,7 +12,8 @@ dependencies:
   get: ^4.6.1
   get_storage: ^2.0.3
   smooth_page_indicator: ^1.0.1+2
-
+  google_fonts: ^6.1.0
+  cupertino_icons: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -40,7 +41,17 @@ flutter:
         - asset: assets/fonts/antipasto/AntipastoPro-Medium_trial.ttf
         - asset: assets/fonts/antipasto/AntipastoPro-ExtraBold_trial.ttf
         - asset: assets/fonts/antipasto/AntipastoPro-Thin_trial.ttf
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-Bold.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-SemiBold.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-Medium.ttf
+        - asset: assets/fonts/Quicksand/Quicksand-Light.ttf
+
   assets:
     - assets/
     - assets/landing/
     - assets/fonts/
+    - assets/homescreen/
+    - assets/drawer/
