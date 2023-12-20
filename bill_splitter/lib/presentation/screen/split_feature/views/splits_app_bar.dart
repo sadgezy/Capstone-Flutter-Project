@@ -1,6 +1,7 @@
 import 'package:bill_splitter/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class SplitAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size screenSize;
@@ -21,7 +22,6 @@ class SplitAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _SplitAppBarState extends State<SplitAppBar> {
   @override
   Widget build(BuildContext context) {
-    var size = widget.screenSize;
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
@@ -34,7 +34,55 @@ class _SplitAppBarState extends State<SplitAppBar> {
             children: [
               GestureDetector(
                 onTap: () {
-                  Scaffold.of(context).openDrawer();
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        backgroundColor: AppColors.primaryColor,
+                        content: Text('Do you want to discard unsaved split?',
+                            style: TextStyle(
+                              fontFamily: 'AntipastoPro',
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.backgroundColor,
+                            )),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(
+                                fontFamily: 'AntipastoPro',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.accentColor,
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                          TextButton(
+                            child: const Text(
+                              'Discard',
+                              style: TextStyle(
+                                fontFamily: 'AntipastoPro',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.accentColor,
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.back();
+                              Get.back();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),

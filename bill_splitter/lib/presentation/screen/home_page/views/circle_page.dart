@@ -26,45 +26,82 @@ class circlesPage extends StatelessWidget {
               color: AppColors.backgroundColor,
             ),
           ),
-          const Padding(
+          Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment
                   .spaceEvenly, // Distribute the circles evenly across the Row
               children: [
-                CircleAvatar(
-                  backgroundColor: AppColors.accentColor,
-                  // backgroundImage: NetworkImage(
-                  //   'https://source.unsplash.com/random?sig=1',
-                  // ), // Replace with image path
-                  radius: 30,
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color:
+                          AppColors.accentColor, // Change the color as needed
+                      width: 3.0, // Change the width as needed
+                    ),
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.accentColor,
+                    backgroundImage: NetworkImage(
+                      'https://source.unsplash.com/random?sig=1',
+                    ), // Replace with image path
+                    radius: 27,
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color:
+                          AppColors.accentColor, // Change the color as needed
+                      width: 3.0, // Change the width as needed
+                    ),
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.accentColor,
+                    backgroundImage: NetworkImage(
+                      'https://source.unsplash.com/random?sig=2',
+                    ), // Replace with image path
+                    radius: 27,
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color:
+                          AppColors.accentColor, // Change the color as needed
+                      width: 3.0, // Change the width as needed
+                    ),
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.accentColor,
+                    backgroundImage: NetworkImage(
+                      'https://source.unsplash.com/random?sig=3',
+                    ), // Replace with image path
+                    radius: 27,
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color:
+                          AppColors.accentColor, // Change the color as needed
+                      width: 3.0, // Change the width as needed
+                    ),
+                  ),
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.accentColor,
+                    backgroundImage: NetworkImage(
+                      'https://source.unsplash.com/random?sig=4',
+                    ), // Replace with image path
+                    radius: 27,
+                  ),
                 ),
                 CircleAvatar(
                   backgroundColor: AppColors.accentColor,
-                  // backgroundImage: NetworkImage(
-                  //   'https://source.unsplash.com/random?sig=1',
-                  // ), // Replace with image path
-                  radius: 30,
-                ),
-                CircleAvatar(
-                  backgroundColor: AppColors.accentColor,
-                  // backgroundImage: NetworkImage(
-                  //   'https://source.unsplash.com/random?sig=1',
-                  // ), // Replace with image path
-                  radius: 30,
-                ),
-                CircleAvatar(
-                  backgroundColor: AppColors.accentColor,
-                  // backgroundImage: NetworkImage(
-                  //   'https://source.unsplash.com/random?sig=1',
-                  // ), // Replace with image path
-                  radius: 30,
-                ),
-                CircleAvatar(
-                  backgroundColor: AppColors.accentColor,
-                  // backgroundImage: NetworkImage(
-                  //   'https://source.unsplash.com/random?sig=1',
-                  // ), // Replace with image path
                   radius: 30,
                   child: Center(
                     child: Text(

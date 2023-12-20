@@ -23,9 +23,3 @@ class BillItem {
     ever(this.quantity, (_) => calculateTotal());
   }
 }
-
-class SplitList {
-  List<BillItem> billItems;
-
-  SplitList({required this.billItems});
-}

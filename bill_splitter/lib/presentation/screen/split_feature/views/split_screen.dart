@@ -5,6 +5,7 @@ import 'package:bill_splitter/presentation/screen/split_feature/views/split_item
 import 'package:bill_splitter/presentation/screen/split_feature/views/splits_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 
 class SplitScreen extends StatefulWidget {
   const SplitScreen({super.key});
@@ -95,7 +96,8 @@ class _SplitScreenState extends State<SplitScreen> {
                                                                     AppColors
                                                                         .primaryColor,
                                                                 title: Text(
-                                                                  contact.name,
+                                                                  contact
+                                                                      .displayName,
                                                                   style:
                                                                       const TextStyle(
                                                                     fontFamily:
@@ -112,16 +114,25 @@ class _SplitScreenState extends State<SplitScreen> {
                                                                 value: _splitController
                                                                             .selectedContacts[
                                                                         contact
-                                                                            .name] ??
+                                                                            .name
+                                                                            .first] ??
                                                                     false,
                                                                 onChanged:
                                                                     (bool?
                                                                         value) {
                                                                   setState(() {
-                                                                    _splitController
-                                                                            .selectedContacts[
-                                                                        contact
-                                                                            .name] = value!;
+                                                                    if (value ==
+                                                                        true) {
+                                                                      _splitController
+                                                                              .selectedContacts[
+                                                                          contact
+                                                                              .displayName] = value!;
+                                                                    } else {
+                                                                      _splitController
+                                                                          .selectedContacts
+                                                                          .remove(
+                                                                              contact.name);
+                                                                    }
                                                                   });
                                                                 },
                                                               );
@@ -181,25 +192,33 @@ class _SplitScreenState extends State<SplitScreen> {
                                           : AppColors.accentColor,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: const Row(
+                                    child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Expanded(
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 8.0),
-                                            child: Text(
-                                              'Choose Contacts',
-                                              style: TextStyle(
-                                                fontFamily: 'AntipastoPro',
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w700,
-                                                color: AppColors.primaryColor,
+                                            padding: const EdgeInsets.only(
+                                                left: 8.0),
+                                            child: Obx(
+                                              () => Text(
+                                                _splitController
+                                                        .selectedContacts
+                                                        .isEmpty
+                                                    ? 'Choose Contacts'
+                                                    : '${_splitController.selectedContacts.length} Selected',
+                                                style: const TextStyle(
+                                                  fontFamily: 'Quicksand',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: AppColors.primaryColor,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                        Icon(Icons.arrow_drop_down_outlined,
+                                        const Icon(
+                                            Icons.arrow_drop_down_outlined,
                                             color: AppColors.primaryColor),
                                       ],
                                     ),
@@ -229,15 +248,15 @@ class _SplitScreenState extends State<SplitScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
+                                  const Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      const Icon(
+                                      Icon(
                                         Icons.receipt_long_sharp,
                                         color: AppColors.accentColor,
                                         size: 50,
                                       ),
-                                      const Padding(
+                                      Padding(
                                         padding: EdgeInsets.only(left: 16.0),
                                         child: Text(
                                           'Total:',
@@ -263,7 +282,7 @@ class _SplitScreenState extends State<SplitScreen> {
                                       child: Obx(
                                         () => Text(
                                           'PHP ${_splitController.calculateTotalCost()}', //Total Bil Cost
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontFamily: 'QuickSand',
                                             fontSize: 20,
                                             fontWeight: FontWeight.w700,
@@ -281,7 +300,7 @@ class _SplitScreenState extends State<SplitScreen> {
                         Container(
                           height: screenSize.height * 0.45,
                           width: screenSize.width * 0.9,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: AppColors.primaryColor,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20),
@@ -298,8 +317,6 @@ class _SplitScreenState extends State<SplitScreen> {
                                   // If it's the last index, return the LastSplitItem
                                   return GestureDetector(
                                     onTap: () {
-                                      print('Add Split Item');
-                                      print(_splitController.splitItems.length);
                                       setState(() {
                                         _splitController.addSplitItem(context);
                                       });
@@ -313,18 +330,8 @@ class _SplitScreenState extends State<SplitScreen> {
                                     ),
                                   );
                                 } else {
-                                  // Return a SplitItem with the controllers and quantity
-                                  print(
-                                      'Title: ${_splitController.splitItems[index].title.value}');
-                                  print(
-                                      'Amount: ${_splitController.splitItems[index].amount.value}');
-                                  print(
-                                      'Quantity: ${_splitController.splitItems[index].quantity.value}');
-                                  print(
-                                      'Total Amount: ${_splitController.splitItems[index].totalAmount.value}');
-
                                   return Padding(
-                                    padding: EdgeInsets.only(bottom: 10),
+                                    padding: const EdgeInsets.only(bottom: 10),
                                     child: SplitItem(
                                       index: index,
                                       item: _splitController.splitItems[index],

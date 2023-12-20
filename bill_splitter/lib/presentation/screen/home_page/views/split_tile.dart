@@ -68,13 +68,27 @@ class _SplitCardState extends State<SplitCard> {
                           children: List.generate(3, (index) {
                             return Positioned(
                               left: index * 20.0, // Adjust as needed
-                              child: const CircleAvatar(
-                                  backgroundColor: AppColors.accentColor,
-                                  radius: 15,
+                              child: CircleAvatar(
+                                backgroundColor: AppColors.accentColor,
+                                radius: 15,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: AppColors
+                                          .accentColor, // Change the color as needed
+                                      width: 2.0, // Change the width as needed
+                                    ),
+                                  ),
                                   child: CircleAvatar(
-                                    radius: 12,
-                                    backgroundColor: AppColors.backgroundColor,
-                                  )),
+                                    backgroundColor: AppColors.accentColor,
+                                    backgroundImage: NetworkImage(
+                                      'https://source.unsplash.com/random?sig=$index',
+                                    ), // Replace with image path
+                                    radius: 25,
+                                  ),
+                                ),
+                              ),
                             );
                           }).reversed.toList(),
                         ),

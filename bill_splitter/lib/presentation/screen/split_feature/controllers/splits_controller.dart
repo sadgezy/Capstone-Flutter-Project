@@ -1,5 +1,6 @@
 import 'package:bill_splitter/colors.dart';
 import 'package:bill_splitter/model/bill_items.dart';
+import 'package:bill_splitter/model/split_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -34,6 +35,7 @@ class SplitController extends GetxController {
   var quantity = 0.obs;
   var tilePrice = 0.0.obs;
   var splitItems = <BillItem>[].obs;
+  var splitList = SplitList(billItems: [], selectedContacts: []);
 
   // Handle the edit action for the first text field
   void handleEdit1() {

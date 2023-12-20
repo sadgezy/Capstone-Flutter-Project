@@ -39,10 +39,10 @@ class _SplitItemState extends State<SplitItem> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(16.0),
                           child: Text(
                             '${widget.item.title}', //Activity Name
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Quicksand',
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -51,9 +51,9 @@ class _SplitItemState extends State<SplitItem> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 12.0),
+                          padding: const EdgeInsets.only(right: 12.0),
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.edit,
                               color: AppColors.accentColor,
                               size: 20,
@@ -70,10 +70,10 @@ class _SplitItemState extends State<SplitItem> {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 16.0),
+                        padding: const EdgeInsets.only(left: 16.0),
                         child: Text(
                           'PHP ${widget.item.amount}', //Bill item amount
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Quicksand',
                             fontSize: 15,
                             fontWeight: FontWeight.w300,
@@ -82,10 +82,10 @@ class _SplitItemState extends State<SplitItem> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 16.0),
+                        padding: const EdgeInsets.only(left: 16.0),
                         child: Text(
                           'x${widget.item.quantity}', //Bill item quantity
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'Quicksand',
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
@@ -93,14 +93,14 @@ class _SplitItemState extends State<SplitItem> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 40,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(right: 2),
+                        padding: const EdgeInsets.only(right: 2),
                         child: Obx(() => Text(
                               'PHP  ${widget.item.totalAmount}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontFamily: 'Quicksand',
                                 fontSize: 25,
                                 fontWeight: FontWeight.w900,
@@ -113,7 +113,7 @@ class _SplitItemState extends State<SplitItem> {
                 ],
               )
             : Container(
-                padding: EdgeInsets.only(left: 16.0, right: 16.0),
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +122,7 @@ class _SplitItemState extends State<SplitItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.only(top: 16.0),
+                          padding: const EdgeInsets.only(top: 16.0),
                           height: 50,
                           width: 190,
                           child: TextField(
@@ -146,13 +146,13 @@ class _SplitItemState extends State<SplitItem> {
                                         .primaryColor), // Change this to your desired color
                               ),
                             ),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: AppColors
                                   .white, // Change this to your desired color
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 16,
                         ),
                         Row(
@@ -183,14 +183,14 @@ class _SplitItemState extends State<SplitItem> {
                                             .primaryColor), // Change this to your desired color
                                   ),
                                 ),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: AppColors
                                       .white, // Change this to your desired color
                                 ),
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 10),
+                              margin: const EdgeInsets.only(left: 10),
                               height: 35,
                               width: 110,
                               decoration: BoxDecoration(
@@ -203,7 +203,7 @@ class _SplitItemState extends State<SplitItem> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     IconButton(
-                                      icon: Icon(Icons.remove),
+                                      icon: const Icon(Icons.remove),
                                       onPressed: () {
                                         splitsController.handleDecreaseQuantity(
                                             widget.index);
@@ -211,10 +211,10 @@ class _SplitItemState extends State<SplitItem> {
                                     ),
                                     Obx(() => Text(
                                           '${widget.item.quantity}',
-                                          style: TextStyle(fontSize: 18),
+                                          style: const TextStyle(fontSize: 18),
                                         )),
                                     IconButton(
-                                      icon: Icon(Icons.add),
+                                      icon: const Icon(Icons.add),
                                       onPressed: () {
                                         splitsController.handleIncreaseQuantity(
                                             widget.index);
@@ -276,19 +276,19 @@ class LastSplitItem extends StatelessWidget {
       width: screenSize.width * 0.8,
       height: 70,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(217, 217, 217, 0.2),
+        color: const Color.fromRGBO(217, 217, 217, 0.2),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
         padding: const EdgeInsets.all(6),
         child: DottedBorder(
           borderType: BorderType.RRect,
-          radius: Radius.circular(15),
-          dashPattern: [10, 10],
+          radius: const Radius.circular(15),
+          dashPattern: const [10, 10],
           color: Colors.white,
           strokeWidth: 4,
           child: const ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
+            borderRadius: BorderRadius.all(Radius.circular(15)),
             child: Center(
               child: Text(
                 '+ add more', //Activity Name

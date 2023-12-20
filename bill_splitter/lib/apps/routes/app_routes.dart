@@ -14,7 +14,12 @@ class AppRoutes {
         transition: Transition.downToUp,
         transitionDuration: Duration(milliseconds: 400),
         curve: Curves.easeInBack),
-    GetPage(name: '/home', page: () => HomeScreen()),
+    GetPage(
+        name: '/home',
+        page: () => HomeScreen(),
+        transition: Transition.rightToLeft,
+        transitionDuration: Duration(milliseconds: 400),
+        curve: Curves.easeInOut),
     GetPage(
         name: '/new_split',
         page: () => SplitScreen(),

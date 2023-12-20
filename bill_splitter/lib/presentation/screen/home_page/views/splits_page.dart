@@ -1,6 +1,7 @@
 import 'package:bill_splitter/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplitsPage extends StatefulWidget {
   const SplitsPage({
@@ -66,7 +67,7 @@ class _SplitsPageState extends State<SplitsPage> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/new_split');
+                              Get.toNamed('/new_split');
                             },
                             child: Container(
                                 height: 45,
