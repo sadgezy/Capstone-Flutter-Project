@@ -64,37 +64,42 @@ class _SplitsPageState extends State<SplitsPage> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                              height: 45,
-                              width: widget.screenWidth * 0.25,
-                              decoration: BoxDecoration(
-                                color: AppColors.accentColor,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/homescreen/create_order.png',
-                                      scale: 3.5,
-                                      color: AppColors.primaryColor,
-                                    ),
-                                    const Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        'create',
-                                        style: TextStyle(
-                                          fontFamily: 'AntipastoPro',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          color: AppColors.primaryColor,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/new_split');
+                            },
+                            child: Container(
+                                height: 45,
+                                width: widget.screenWidth * 0.25,
+                                decoration: BoxDecoration(
+                                  color: AppColors.accentColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/homescreen/create_order.png',
+                                        scale: 3.5,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'create',
+                                          style: TextStyle(
+                                            fontFamily: 'AntipastoPro',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: AppColors.primaryColor,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )),
+                                    ],
+                                  ),
+                                )),
+                          ),
                           Container(
                               height: 45,
                               width: widget.screenWidth * 0.21,

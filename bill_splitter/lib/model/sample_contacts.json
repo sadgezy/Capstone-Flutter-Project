@@ -1,0 +1,17 @@
+[
+  {
+    "name": "John Doe",
+    "username": "johndoe",
+    "avatar": "https://example.com/images/johndoe.jpg"
+  },
+  {
+    "name": "Jane Smith",
+    "username": "janesmith",
+    "avatar": "https://example.com/images/janesmith.jpg"
+  },
+  {
+    "name": "Bob Johnson",
+    "username": "bobjohnson",
+    "avatar": "https://example.com/images/bobjohnson.jpg"
+  }
+]

@@ -92,8 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Container(
                 width: screenWidth * 0.85,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
                   child: Text(
                     'Active Splits >',
                     style: TextStyle(
