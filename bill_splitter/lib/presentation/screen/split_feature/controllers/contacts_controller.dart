@@ -1,7 +1,7 @@
 // import 'dart:html';
-import 'package:permission_handler/permission_handler.dart';
-
+import 'package:bill_splitter/model/contacts.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:get/get.dart';
 // import 'dart:convert';
 // import 'package:flutter/services.dart';
@@ -23,7 +23,7 @@ import 'package:get/get.dart';
 // }
 
 class ContactsController extends GetxController {
-  var contactsList = <Contact>[].obs;
+  var contactsList = <SplitContact>[].obs;
 
   @override
   void onInit() {
@@ -38,17 +38,15 @@ class ContactsController extends GetxController {
     }
 
     if (await Permission.contacts.isGranted) {
-      var contacts = <Contact>[];
-      final phoneContacts = await FlutterContacts.getContacts();
-      for (var item in phoneContacts) {
-        contacts.add(Contact(
-          id: item.id,
-          displayName: item.displayName,
-        ));
+      var contacts = <SplitContact>[];
+      // Fetch contacts and add them to the list
+      for (var c in (await FlutterContacts.getContacts()).toList()) {
+        contacts.add(SplitContact(
+            contact: c,
+            isSelected: false,
+            splitAmount: 0.0)); // Create SplitContact instances
       }
       contactsList.value = contacts;
-    } else {
-      // Handle when contacts permission is not granted
     }
   }
 }

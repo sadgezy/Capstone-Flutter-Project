@@ -1,11 +1,13 @@
 import 'package:bill_splitter/colors.dart';
+import 'package:bill_splitter/model/split_list.dart';
 import 'package:bill_splitter/presentation/screen/split_feature/controllers/contacts_controller.dart';
 import 'package:bill_splitter/presentation/screen/split_feature/controllers/splits_controller.dart';
 import 'package:bill_splitter/presentation/screen/split_feature/views/split_item.dart';
+import 'package:bill_splitter/presentation/screen/split_feature/views/split_title.dart';
 import 'package:bill_splitter/presentation/screen/split_feature/views/splits_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+// import 'package:flutter_contacts/flutter_contacts.dart';
 
 class SplitScreen extends StatefulWidget {
   const SplitScreen({super.key});
@@ -88,54 +90,40 @@ class _SplitScreenState extends State<SplitScreen> {
                                                                     .contactsList
                                                                     .map(
                                                                         (contact) {
-                                                              return CheckboxListTile(
-                                                                activeColor:
-                                                                    AppColors
-                                                                        .accentColor,
-                                                                checkColor:
-                                                                    AppColors
-                                                                        .primaryColor,
-                                                                title: Text(
-                                                                  contact
-                                                                      .displayName,
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    fontFamily:
-                                                                        'AntipastoPro',
-                                                                    fontSize:
-                                                                        20,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    color: AppColors
-                                                                        .backgroundColor,
-                                                                  ),
-                                                                ),
-                                                                value: _splitController
-                                                                            .selectedContacts[
-                                                                        contact
-                                                                            .name
-                                                                            .first] ??
-                                                                    false,
-                                                                onChanged:
-                                                                    (bool?
-                                                                        value) {
-                                                                  setState(() {
-                                                                    if (value ==
-                                                                        true) {
-                                                                      _splitController
-                                                                              .selectedContacts[
-                                                                          contact
-                                                                              .displayName] = value!;
-                                                                    } else {
-                                                                      _splitController
+                                                              return Obx(() =>
+                                                                  CheckboxListTile(
+                                                                      activeColor:
+                                                                          AppColors
+                                                                              .accentColor,
+                                                                      checkColor:
+                                                                          AppColors
+                                                                              .primaryColor,
+                                                                      title:
+                                                                          Text(
+                                                                        contact.contact.displayName ??
+                                                                            'Unknown',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontFamily:
+                                                                              'AntipastoPro',
+                                                                          fontSize:
+                                                                              20,
+                                                                          fontWeight:
+                                                                              FontWeight.w700,
+                                                                          color:
+                                                                              AppColors.backgroundColor,
+                                                                        ),
+                                                                      ),
+                                                                      value: _splitController
                                                                           .selectedContacts
-                                                                          .remove(
-                                                                              contact.name);
-                                                                    }
-                                                                  });
-                                                                },
-                                                              );
+                                                                          .contains(
+                                                                              contact),
+                                                                      onChanged:
+                                                                          (bool?
+                                                                              value) {
+                                                                        _splitController
+                                                                            .selectContact(contact);
+                                                                      }));
                                                             }).toList(),
                                                           ),
                                                         ),
@@ -353,6 +341,23 @@ class _SplitScreenState extends State<SplitScreen> {
                           width: screenSize.width * 0.9,
                           height: 100,
                           child: InkWell(
+                              onTap: () {
+                                Split splitList = Split(
+                                  billItems: _splitController
+                                      .getBillItemsForSplitList(),
+                                  selectedContacts:
+                                      _splitController.selectedContacts,
+                                  splitTitle: _splitController
+                                      .splitTitleController.text,
+                                  dueDate:
+                                      _splitController.dueDateController.text,
+                                  splitTotal:
+                                      _splitController.calculateTotalCost(),
+                                );
+                                print(splitList.billItems);
+
+                                Get.toNamed('/divide', arguments: [splitList]);
+                              },
                               child: Center(
                                   child: Container(
                                       height: 50,
@@ -394,108 +399,6 @@ class _SplitScreenState extends State<SplitScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class SplitTitle extends StatelessWidget {
-  const SplitTitle({
-    super.key,
-    required SplitController splitcontroller,
-    required this.screenSize,
-  }) : _splitcontroller = splitcontroller;
-
-  final SplitController _splitcontroller;
-  final Size screenSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Obx(() => _splitcontroller.isEditingText1.value ||
-                _splitcontroller.focusNode1.hasFocus
-            ? Container(
-                height: 70,
-                padding: const EdgeInsets.only(left: 16),
-                width: screenSize.width * 0.4,
-                child: TextField(
-                  controller: _splitcontroller.controller1,
-                  focusNode: _splitcontroller.focusNode1,
-                  decoration: const InputDecoration(
-                    labelStyle: TextStyle(color: AppColors.primaryColor),
-                    labelText: 'Split Name',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: AppColors
-                              .primaryColor), // Change this to your desired color
-                    ),
-                  ),
-                  onSubmitted: _splitcontroller.handleSubmit1,
-                ),
-              )
-            : Container(
-                padding: const EdgeInsets.only(left: 16),
-                child: Row(
-                  children: [
-                    Text(
-                      _splitcontroller.controller1.text.isEmpty
-                          ? 'New Split'
-                          : _splitcontroller.controller1.text, //Activity Name
-                      style: const TextStyle(
-                        fontFamily: 'AntipastoPro',
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.edit,
-                          color: AppColors.primaryColor,
-                          size: 20,
-                        ),
-                        onPressed: _splitcontroller.handleEdit1,
-                      ),
-                    )
-                  ],
-                ),
-              )),
-        Obx(() => _splitcontroller.isEditingDueDate.value
-            ? Container(
-                width: screenSize.width * 0.35,
-                padding: const EdgeInsets.only(left: 16),
-                child: TextField(
-                  controller: _splitcontroller.dueDateController,
-                  focusNode: _splitcontroller.dueDateFocusNode,
-                  decoration: InputDecoration(
-                    labelText: 'Due Date',
-                    suffixIcon: IconButton(
-                      icon: const Icon(Icons.calendar_today),
-                      onPressed: () =>
-                          _splitcontroller.handleEditDueDate(context),
-                    ),
-                  ),
-                  onSubmitted: _splitcontroller.handleSubmitDueDate,
-                ),
-              )
-            : Container(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text(
-                  _splitcontroller.dueDateController.text.isEmpty
-                      ? 'No Due Date'
-                      : _splitcontroller.dueDateController.text,
-                  style: const TextStyle(
-                    fontFamily: 'Quicksand',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.primaryColor,
-                  ),
-                ),
-              )),
-      ],
     );
   }
 }

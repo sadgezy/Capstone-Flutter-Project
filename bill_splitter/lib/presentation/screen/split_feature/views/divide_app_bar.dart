@@ -1,12 +1,12 @@
 import 'package:bill_splitter/colors.dart';
-import 'package:bill_splitter/presentation/screen/split_feature/controllers/splits_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class SplitAppBar extends StatefulWidget implements PreferredSizeWidget {
+class DivideAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size screenSize;
   final Color backgroundColor;
-  const SplitAppBar(
+  const DivideAppBar(
       {super.key,
       required this.screenSize,
       this.backgroundColor = const Color.fromRGBO(254, 254, 255, 1)});
@@ -16,19 +16,17 @@ class SplitAppBar extends StatefulWidget implements PreferredSizeWidget {
       Size(screenSize.width, 90.0); // You can adjust the height as needed.
 
   @override
-  State<SplitAppBar> createState() => _SplitAppBarState();
+  State<DivideAppBar> createState() => _DivideAppBarState();
 }
 
-class _SplitAppBarState extends State<SplitAppBar> {
-  final _splitController = Get.find<SplitController>();
-
+class _DivideAppBarState extends State<DivideAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
         children: [
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Row(
@@ -44,14 +42,13 @@ class _SplitAppBarState extends State<SplitAppBar> {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         backgroundColor: AppColors.primaryColor,
-                        content:
-                            const Text('Do you want to discard unsaved split?',
-                                style: TextStyle(
-                                  fontFamily: 'AntipastoPro',
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.backgroundColor,
-                                )),
+                        content: Text('Do you want to discard unsaved split?',
+                            style: TextStyle(
+                              fontFamily: 'AntipastoPro',
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.backgroundColor,
+                            )),
                         actions: <Widget>[
                           TextButton(
                             child: const Text(
@@ -79,23 +76,6 @@ class _SplitAppBarState extends State<SplitAppBar> {
                             ),
                             onPressed: () {
                               Get.back();
-                              // Clear split title and date
-                              _splitController.splitTitleController.clear();
-                              _splitController.dueDateController.clear();
-
-                              // Clear all controllers
-                              _splitController.selectedContacts.clear();
-                              _splitController.itemTitleControllers
-                                  .forEach((controller) {
-                                controller.clear();
-                              });
-                              _splitController.itemPriceControllers
-                                  .forEach((controller) {
-                                controller.clear();
-                              });
-
-                              // Reset the ListView
-                              _splitController.splitItems.clear();
                               Get.back();
                             },
                           ),
@@ -112,7 +92,7 @@ class _SplitAppBarState extends State<SplitAppBar> {
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  'splits', //Activity Name
+                  'assign split', //Activity Name
                   style: TextStyle(
                     fontFamily: 'AntipastoPro',
                     fontSize: 30,
@@ -121,8 +101,8 @@ class _SplitAppBarState extends State<SplitAppBar> {
                   ),
                 ),
               ),
-              const Padding(
-                  padding: EdgeInsets.all(16),
+              Padding(
+                  padding: const EdgeInsets.all(16),
                   child: SizedBox(
                     width: 24,
                   ))

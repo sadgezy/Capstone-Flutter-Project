@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return const ColoredBox(
       color: Colors.white,
       child: SafeArea(
-        child: WelcomeScreen(),
+        child: SplitScreen(),
       ),
     );
   }
