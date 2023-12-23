@@ -1,19 +1,27 @@
 import 'package:bill_splitter/colors.dart';
+import 'package:bill_splitter/model/split_list.dart';
+import 'package:bill_splitter/presentation/screen/home_page/controllers/homepage_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplitCard extends StatefulWidget {
-  const SplitCard({
-    super.key,
+  SplitCard({
+    Key? key,
+    required this.split,
+    required this.index,
     required this.screenWidth,
-  });
+  }) : super(key: key);
 
   final double screenWidth;
+  final Split split;
+  final int index;
 
   @override
   State<SplitCard> createState() => _SplitCardState();
 }
 
 class _SplitCardState extends State<SplitCard> {
+  HomePageController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,10 +55,10 @@ class _SplitCardState extends State<SplitCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Laiya Trip ',
+                  Text(
+                    controller.splits[widget.index].title,
                     style: TextStyle(
-                      fontFamily: 'AntipastoPro',
+                      fontFamily: 'QuickSand',
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                       color: AppColors.accentColor,
@@ -59,7 +67,7 @@ class _SplitCardState extends State<SplitCard> {
                   const SizedBox(height: 6), // Add some spacing
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
                         height: 60, // Adjust as needed
@@ -83,7 +91,7 @@ class _SplitCardState extends State<SplitCard> {
                                   child: CircleAvatar(
                                     backgroundColor: AppColors.accentColor,
                                     backgroundImage: NetworkImage(
-                                      'https://source.unsplash.com/random?sig=$index',
+                                      'https://source.unsplash.com/random?sig=${index}',
                                     ), // Replace with image path
                                     radius: 25,
                                   ),
@@ -93,16 +101,20 @@ class _SplitCardState extends State<SplitCard> {
                           }).reversed.toList(),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 16.0),
-                        child: Text(
-                          'Total: 12,883.00',
-                          style: TextStyle(
-                            fontFamily: 'Quicksand',
-                            fontSize: 9.5,
-                            fontWeight: FontWeight.w300,
-                            color: AppColors.accentColor,
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: Obx(
+                          () {
+                            return Text(
+                              'Total: PHP ${controller.splits[widget.index].splitTotal.toString()}',
+                              style: TextStyle(
+                                fontFamily: 'Quicksand',
+                                fontSize: 9.5,
+                                fontWeight: FontWeight.w300,
+                                color: AppColors.accentColor,
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -124,7 +136,7 @@ class _SplitCardState extends State<SplitCard> {
                               child: const Padding(
                                 padding: EdgeInsets.all(5.0),
                                 child: Text(
-                                  'PHP 688.00',
+                                  'Your Split',
                                   style: TextStyle(
                                     fontFamily: 'Quicksand',
                                     fontSize: 20,
@@ -134,9 +146,9 @@ class _SplitCardState extends State<SplitCard> {
                                 ),
                               ),
                             ),
-                            const Text(
-                              'Due Feb 6',
-                              style: TextStyle(
+                            Text(
+                              controller.getDueDate(widget.index),
+                              style: const TextStyle(
                                 fontFamily: 'Quicksand',
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,

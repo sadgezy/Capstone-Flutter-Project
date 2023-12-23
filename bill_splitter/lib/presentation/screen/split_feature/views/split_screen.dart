@@ -34,12 +34,12 @@ class _SplitScreenState extends State<SplitScreen> {
                 // clipBehavior: Clip.antiAlias,
                 children: [
                   SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SplitTitle(
-                            splitcontroller: _splitController,
-                            screenSize: screenSize),
+                            splitcontroller: _splitController, screenSize: screenSize),
                         Padding(
                           padding: const EdgeInsets.only(left: 16.0, top: 24.0),
                           child: Row(
@@ -69,8 +69,7 @@ class _SplitScreenState extends State<SplitScreen> {
                                             height: screenSize.height * 0.5,
                                             decoration: BoxDecoration(
                                               color: AppColors.primaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
+                                              borderRadius: BorderRadius.circular(20),
                                             ),
                                             width: double.maxFinite,
                                             child: SingleChildScrollView(
@@ -82,36 +81,31 @@ class _SplitScreenState extends State<SplitScreen> {
                                                       child: Obx(
                                                         () => Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                  .all(24.0),
+                                                              const EdgeInsets.all(24.0),
                                                           child: ListView(
-                                                            children:
-                                                                contactsController
-                                                                    .contactsList
-                                                                    .map(
-                                                                        (contact) {
+                                                            children: contactsController
+                                                                .contactsList
+                                                                .map((contact) {
                                                               return Obx(() =>
                                                                   CheckboxListTile(
                                                                       activeColor:
                                                                           AppColors
                                                                               .accentColor,
-                                                                      checkColor:
-                                                                          AppColors
-                                                                              .primaryColor,
-                                                                      title:
-                                                                          Text(
-                                                                        contact.contact.displayName ??
-                                                                            'Unknown',
+                                                                      checkColor: AppColors
+                                                                          .primaryColor,
+                                                                      title: Text(
+                                                                        contact.contact
+                                                                            .displayName,
                                                                         style:
                                                                             const TextStyle(
                                                                           fontFamily:
                                                                               'AntipastoPro',
-                                                                          fontSize:
-                                                                              20,
+                                                                          fontSize: 20,
                                                                           fontWeight:
-                                                                              FontWeight.w700,
-                                                                          color:
-                                                                              AppColors.backgroundColor,
+                                                                              FontWeight
+                                                                                  .w700,
+                                                                          color: AppColors
+                                                                              .backgroundColor,
                                                                         ),
                                                                       ),
                                                                       value: _splitController
@@ -119,10 +113,10 @@ class _SplitScreenState extends State<SplitScreen> {
                                                                           .contains(
                                                                               contact),
                                                                       onChanged:
-                                                                          (bool?
-                                                                              value) {
+                                                                          (bool? value) {
                                                                         _splitController
-                                                                            .selectContact(contact);
+                                                                            .selectContact(
+                                                                                contact);
                                                                       }));
                                                             }).toList(),
                                                           ),
@@ -130,32 +124,26 @@ class _SplitScreenState extends State<SplitScreen> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              bottom: 16),
+                                                      margin: const EdgeInsets.only(
+                                                          bottom: 16),
                                                       decoration: BoxDecoration(
-                                                        color: AppColors
-                                                            .secondaryColor,
+                                                        color: AppColors.secondaryColor,
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
+                                                            BorderRadius.circular(25),
                                                       ),
                                                       child: TextButton(
                                                         child: const Text(
                                                           'OK',
                                                           style: TextStyle(
-                                                            fontFamily:
-                                                                'AntipastoPro',
+                                                            fontFamily: 'AntipastoPro',
                                                             fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            color: AppColors
-                                                                .backgroundColor,
+                                                            fontWeight: FontWeight.w700,
+                                                            color:
+                                                                AppColors.backgroundColor,
                                                           ),
                                                         ),
                                                         onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
+                                                          Navigator.of(context).pop();
                                                         },
                                                       ),
                                                     ),
@@ -174,25 +162,20 @@ class _SplitScreenState extends State<SplitScreen> {
                                     height: 30,
                                     width: screenSize.width * 0.42,
                                     decoration: BoxDecoration(
-                                      color: _splitController
-                                              .isDropdownOpened.value
+                                      color: _splitController.isDropdownOpened.value
                                           ? AppColors.accentColor
                                           : AppColors.accentColor,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Expanded(
                                           child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8.0),
+                                            padding: const EdgeInsets.only(left: 8.0),
                                             child: Obx(
                                               () => Text(
-                                                _splitController
-                                                        .selectedContacts
-                                                        .isEmpty
+                                                _splitController.selectedContacts.isEmpty
                                                     ? 'Choose Contacts'
                                                     : '${_splitController.selectedContacts.length} Selected',
                                                 style: const TextStyle(
@@ -205,8 +188,7 @@ class _SplitScreenState extends State<SplitScreen> {
                                             ),
                                           ),
                                         ),
-                                        const Icon(
-                                            Icons.arrow_drop_down_outlined,
+                                        const Icon(Icons.arrow_drop_down_outlined,
                                             color: AppColors.primaryColor),
                                       ],
                                     ),
@@ -233,8 +215,7 @@ class _SplitScreenState extends State<SplitScreen> {
                             child: Container(
                               width: screenSize.width * 0.9,
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -300,8 +281,7 @@ class _SplitScreenState extends State<SplitScreen> {
                               key: ValueKey(_splitController.splitItems.length),
                               itemCount: _splitController.splitItems.length + 1,
                               itemBuilder: (BuildContext context, int index) {
-                                if (index ==
-                                    _splitController.splitItems.length) {
+                                if (index == _splitController.splitItems.length) {
                                   // If it's the last index, return the LastSplitItem
                                   return GestureDetector(
                                     onTap: () {
@@ -343,16 +323,11 @@ class _SplitScreenState extends State<SplitScreen> {
                           child: InkWell(
                               onTap: () {
                                 Split splitList = Split(
-                                  billItems: _splitController
-                                      .getBillItemsForSplitList(),
-                                  selectedContacts:
-                                      _splitController.selectedContacts,
-                                  splitTitle: _splitController
-                                      .splitTitleController.text,
-                                  dueDate:
-                                      _splitController.dueDateController.text,
-                                  splitTotal:
-                                      _splitController.calculateTotalCost(),
+                                  billItems: _splitController.getBillItemsForSplitList(),
+                                  selectedContacts: _splitController.selectedContacts,
+                                  splitTitle: _splitController.splitTitleController.text,
+                                  dueDate: _splitController.dueDateController.text,
+                                  splitTotal: _splitController.calculateTotalCost(),
                                 );
                                 print(splitList.billItems);
 

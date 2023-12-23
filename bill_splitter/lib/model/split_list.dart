@@ -15,8 +15,30 @@ class Split {
     required this.dueDate,
     required this.splitTotal,
   });
-  List<SplitContact> getSelectedContacts() {
-    return selectedContacts.where((contact) => contact.isSelected).toList();
+
+  // Getters for splitTitle and dueDate
+  String get title => splitTitle;
+  String get due => dueDate;
+
+  List<String> getSelectedContacts() {
+    List<String> selectedNames = selectedContacts
+        .where((contact) => contact.isSelected)
+        .map((contact) => contact.contact.displayName)
+        .toList();
+
+    // Print the selected contacts
+    // print('Selected names: $selectedNames');
+
+    return selectedNames;
+  }
+
+  int getSelectedContactsLength() {
+    int selectedContactsLength = getSelectedContacts().length;
+
+    // Print the length of the selected contacts
+    // print('Length of selected contacts: $selectedContactsLength');
+
+    return selectedContactsLength;
   }
 
   BillItem getBillItemByName(String name) {

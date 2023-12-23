@@ -2,7 +2,6 @@ import 'package:bill_splitter/colors.dart';
 import 'package:bill_splitter/model/bill_items.dart';
 import 'package:bill_splitter/model/contacts.dart';
 import 'package:bill_splitter/model/split_list.dart';
-import 'package:bill_splitter/presentation/screen/split_feature/controllers/contacts_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -257,6 +256,14 @@ class SplitController extends GetxController {
     }
 
     update(); // Notify listeners to update
+  }
+
+  void resetControllers() {
+    // Reset each controller
+    splitTitleController.clear();
+    dueDateController.clear();
+    // splitTotalController.clear();
+    // Add other controllers that need to be reset...
   }
 
   @override

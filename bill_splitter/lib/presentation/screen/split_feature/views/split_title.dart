@@ -46,10 +46,9 @@ class SplitTitle extends StatelessWidget {
                     Text(
                       _splitcontroller.splitTitleController.text.isEmpty
                           ? 'New Split'
-                          : _splitcontroller
-                              .splitTitleController.text, //Activity Name
+                          : _splitcontroller.splitTitleController.text, //Activity Name
                       style: const TextStyle(
-                        fontFamily: 'AntipastoPro',
+                        fontFamily: 'QuickSand',
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
                         color: AppColors.primaryColor,
@@ -80,8 +79,7 @@ class SplitTitle extends StatelessWidget {
                     labelText: 'Due Date',
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.calendar_today),
-                      onPressed: () =>
-                          _splitcontroller.handleEditDueDate(context),
+                      onPressed: () => _splitcontroller.handleEditDueDate(context),
                     ),
                   ),
                   onSubmitted: _splitcontroller.handleSubmitDueDate,

@@ -1,4 +1,5 @@
 import 'package:bill_splitter/colors.dart';
+import 'package:bill_splitter/presentation/screen/home_page/controllers/homepage_controller.dart';
 import 'package:bill_splitter/presentation/screen/home_page/views/bottom_sheet.dart';
 import 'package:bill_splitter/presentation/screen/home_page/views/circle_page.dart';
 import 'package:bill_splitter/presentation/screen/home_page/views/home_app_bar.dart';
@@ -6,6 +7,7 @@ import 'package:bill_splitter/presentation/screen/home_page/views/home_drawer.da
 import 'package:bill_splitter/presentation/screen/home_page/views/home_pill.dart';
 import 'package:bill_splitter/presentation/screen/home_page/views/split_tile.dart';
 import 'package:bill_splitter/presentation/screen/home_page/views/splits_page.dart';
+import 'package:get/get.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +20,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _pageController = PageController();
+  final controller = Get.put(HomePageController());
   @override
   Widget build(BuildContext context) {
+    controller.printAllSplits();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return ColoredBox(
@@ -54,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           Text(
-                            'Jessica ',
+                            'John ',
                             style: TextStyle(
                               fontFamily: 'AntipastoPro',
                               fontSize: 30,
@@ -111,11 +115,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ScrollSnapList(
                   onItemFocus: (item) {}, // Optional
                   itemSize: (screenWidth * 0.6) + 12.0, // Adjust as needed
-                  itemCount: 10, // Replace with the actual number of SplitCards
+                  itemCount: controller
+                      .splits.length, // Replace with the actual number of SplitCards
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 12.0),
-                      child: SplitCard(screenWidth: screenWidth),
+                      child: SplitCard(
+                          split: controller.splits[index],
+                          index: index,
+                          screenWidth: screenWidth),
                     );
                   },
                 ),

@@ -1,5 +1,5 @@
 import 'package:bill_splitter/colors.dart';
-import 'package:bill_splitter/model/bill_items.dart';
+// import 'package:bill_splitter/model/bill_items.dart';
 import 'package:bill_splitter/model/split_list.dart';
 import 'package:bill_splitter/presentation/screen/home_page/controllers/homepage_controller.dart';
 import 'package:bill_splitter/presentation/screen/split_feature/controllers/splits_controller.dart';
@@ -29,16 +29,16 @@ class _DivideSplitScreenState extends State<DivideSplitScreen> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    List arguments = Get.arguments;
-    Split splitList = arguments[0];
-    // // Accessing the billItems property
-    // BillItem? billItem;
-    // try {
-    //   billItem = splitList.getBillItemByName('item name');
-    // } catch (e) {
-    //   print(e);
-    // }
-    List<String> selectedContacts;
+    List arguments = Get.arguments ?? [];
+    Split splitList = arguments.isNotEmpty && arguments[0] != null
+        ? arguments[0]
+        : Split(
+            billItems: [],
+            selectedContacts: [],
+            splitTitle: '',
+            dueDate: '',
+            splitTotal: 0.0,
+          );
     return ColoredBox(
       color: AppColors.white,
       child: SafeArea(
@@ -184,6 +184,8 @@ class _DivideSplitScreenState extends State<DivideSplitScreen> {
                                     return ListView.builder(
                                         itemCount: splitList.selectedContacts.length,
                                         itemBuilder: (context, index) {
+                                          // print(
+                                          //     'Selected contacts1: ${splitList.getSelectedContacts()}');
                                           return Padding(
                                             padding: const EdgeInsets.all(16.0),
                                             child: Column(
@@ -383,9 +385,12 @@ class _DivideSplitScreenState extends State<DivideSplitScreen> {
                                   onPressed: () {
                                     // Get the instance of HomePageController
                                     HomePageController homePageController = Get.find();
+                                    // Print the data inside splitList
+                                    // print('SplitList contents: $splitList');
 
                                     // Add the new Split to the list in HomePageController
                                     homePageController.addSplit(splitList);
+
                                     Get.toNamed('/home');
                                   },
                                 ),
